@@ -1,0 +1,16 @@
+CREATE TABLE Client (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    firstName VARCHAR(50) NOT NULL,
+    lastName VARCHAR(50) NOT NULL,
+    dni VARCHAR(20) UNIQUE NOT NULL,
+    email VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE BankAccount (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    accountNumber VARCHAR(20) UNIQUE NOT NULL,
+    balance DOUBLE DEFAULT 0.0,
+    accountType ENUM('SAVINGS', 'CHECKING') NOT NULL,
+    clientId INT,
+    FOREIGN KEY (clientId) REFERENCES Client(id)
+);
